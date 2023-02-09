@@ -1,8 +1,8 @@
 function SearchBar(props) {
   return (
-    <div className="row mt-5">
+    <div className="col-12 d-flex justify-content-center align-items-center mt-4">
       <form onSubmit={props.handleSubmit}>
-        <div className="input-group mb-3">
+        <div className="input-group mb-1">
           <input
             className="form-control"
             type="text"

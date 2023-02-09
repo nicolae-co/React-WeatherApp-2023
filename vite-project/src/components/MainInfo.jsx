@@ -32,10 +32,10 @@ function MainInfo(props) {
   return (
     <div className="row ">
       <div className="d-flex flex-column align-items-center justify-content-center">
-        <h1 className="city p-4">{props.city}</h1>
+        <h1 className="city p-2">{props.city}</h1>
         <h3 className="date">{formattedDate}</h3>
-        <h1 className="temperature pt-4 ">{props.temp}°{degreeUnit}</h1>
-        <p>_ _ _ _ _ _ _ _ _</p>
+        <h1 className="temperature pt-2 ">{props.temp}°{degreeUnit}</h1>
+        <p className="m-0">_ _ _ _ _ _ _ _ _</p>
         <div className="d-flex align-items-center text-center">
           <p className="m-0">{props.weatherMain}</p>
           <img
@@ -43,7 +43,7 @@ function MainInfo(props) {
           />
         </div>
         <p>{props.minTemp}°{degreeUnit} / {props.maxTemp}°{degreeUnit}</p>
-        <button onClick={props.changeUnits} className="btn btn-success w-25">
+        <button onClick={props.changeUnits} className="btn btn-success w-25 mb-5">
           {props.units === "metric" ? "F" : "C"}
         </button>
       </div>

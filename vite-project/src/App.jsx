@@ -4,6 +4,7 @@ import SearchBar from "./components/SearchBar";
 import { useState } from "react";
 import { useEffect } from "react";
 import MainInfo from "./components/MainInfo";
+import SecondaryInfo from "./components/SecondaryInfo";
 
 function App() {
   const [data, setData] = useState(null);
@@ -47,6 +48,10 @@ function App() {
           city: json.name,
           weatherMain: json.weather[0].main,
           weatherIcon: json.weather[0].icon,
+          windSpeed: json.wind.speed,
+          windDir: json.wind.deg,
+          sunrise: json.sys.sunrise,
+          sunset: json.sys.sunset
         });
       } catch (error) {
         console.log("error", error);
@@ -56,13 +61,16 @@ function App() {
   }, [location, units]);
 
   return (
-    <div className="container">
-      <SearchBar
-        handleSubmit={handleSubmit}
-        inputCity={inputCity}
-        setCity={setCity}
-      />
+    <div className="container align-items-center">
+      <div className="row">
+        <SearchBar
+          handleSubmit={handleSubmit}
+          inputCity={inputCity}
+          setCity={setCity}
+        />
+      </div>
       {data ? (
+        <>
           <MainInfo
             city={data.city}
             temp={data.temp}
@@ -70,11 +78,20 @@ function App() {
             weatherIcon={data.weatherIcon}
             minTemp={data.minTemp}
             maxTemp={data.maxTemp}
-          changeUnits={changeUnits}
-          units={units}
+            changeUnits={changeUnits}
+            units={units}
           />
+          <SecondaryInfo
+            windSpeed={data.windSpeed}
+            windDir={data.windDir}
+            sunrise={data.sunrise}
+            sunset={data.sunset}
+          />
+        </>
       ) : (
-        <h1>Please search city</h1>
+        <div className="row">
+          <h1 className="text-center">Please search city</h1>
+        </div>
       )}
     </div>
   );
